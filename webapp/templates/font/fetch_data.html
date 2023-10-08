@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>SHOW DATA</h1>
+        <table border="2px">
+           <tr>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th>
+            <th>PASSWORD</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+            <th>INSERT</th>
+           </tr>
+       
+        {% if key1 %}  
+      
+          
+            {% for i in key1 %}
+           <tr>
+                <td>{{i.Name}}</td>
+                <td>{{i.Email}}</td>
+                <td>{{i.Contact}}</td>
+                <td>{{i.Password}}</td>
+                <td>
+                    <form name="editpage" action="{% url 'edit_link' pk=i.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="EDIT" >
+                    </form>
+                </td>
+                <td>
+                    <form name="deletepage" action="{% url 'delete_page' pk=i.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="DELETE" >
+                    </form>
+                </td>
+                 
+                <td>
+                    <form name="insertpage" action="{% url 'insert_page' %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="INSERT">
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+      
+        {% endif %}
+    </table>
+    </center>
+</body>
+</html>
